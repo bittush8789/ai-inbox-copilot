@@ -20,9 +20,11 @@ def inject_custom_css():
                 background-color: transparent !important;
             }
 
-            /* Global Typography Color Fix for Markdown, Chat, Paragraphs, Lists */
-            .stMarkdown, .stMarkdown p, .stMarkdown li, .stMarkdown span, .stMarkdown div,
-            p, li, span, h1, h2, h3, h4, h5, h6 {
+            /* Global Typography Color Fix preserving inline color styles (e.g. green/red status) */
+            .stMarkdown p, .stMarkdown li,
+            p, li, h1, h2, h3, h4, h5, h6,
+            span:not([style*="color"]):not([class*="p-badge"]),
+            div:not([style*="color"]):not([class*="p-badge"]) {
                 color: #F8FAFC !important;
             }
 
@@ -74,11 +76,11 @@ def inject_custom_css():
             }
             
             /* Muted Text Classes */
-            .muted-text, .premium-card .muted-text, .glass-header .muted-text {
+            .muted-text {
                 color: #94A3B8 !important;
             }
 
-            .submuted-text, .premium-card .submuted-text {
+            .submuted-text {
                 color: #64748B !important;
             }
             
