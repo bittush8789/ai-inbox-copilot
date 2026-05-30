@@ -134,8 +134,12 @@ Alternatively, you can run the application inside a Docker container.
    ```bash
    docker-compose up --build -d
    ```
-3. Open `http://localhost:8501` to access the application dashboard.
-4. Stop the container using:
+3. View logs to monitor startup or agent actions:
+   ```bash
+   docker-compose logs -f
+   ```
+4. Open `http://localhost:8501` in your browser to access the application dashboard.
+5. Stop the container using:
    ```bash
    docker-compose down
    ```
