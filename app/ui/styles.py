@@ -3,30 +3,33 @@ import streamlit as st
 def inject_custom_css():
     st.markdown("""
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
             
-            /* Apply premium styling and backgrounds */
+            /* Core Theme & Typography Reset */
             html, body, [class*="css"] {
-                font-family: 'Outfit', sans-serif;
-                background-color: #0A0F1F !important;
-                color: #FFFFFF !important;
+                font-family: 'Inter', sans-serif !important;
+                background-color: #0B1020 !important;
+                color: #F8FAFC !important;
             }
             
             [data-testid="stAppViewContainer"] {
-                background-color: #0A0F1F !important;
-                padding-left: 0 !important;
-                padding-right: 0 !important;
+                background-color: #0B1020 !important;
             }
 
-            /* Center layout - restrict blockcontainer max width */
+            [data-testid="stHeader"] {
+                background-color: transparent !important;
+            }
+
+            /* Container Spacing & Layout */
             .main .block-container {
-                max-width: 900px !important;
-                padding-top: 1rem !important;
-                padding-bottom: 2rem !important;
+                max-width: 1100px !important;
+                padding-top: 2rem !important;
+                padding-bottom: 6rem !important;
                 margin: 0 auto !important;
+                background-color: #0B1020 !important;
             }
             
-            /* Hide Streamlit sidebars completely */
+            /* Hide Streamlit elements */
             [data-testid="stSidebar"] {
                 display: none !important;
             }
@@ -36,42 +39,132 @@ def inject_custom_css():
             
             /* Glassmorphic Top Nav Header */
             .glass-header {
-                background: rgba(19, 26, 43, 0.7);
-                backdrop-filter: blur(12px);
-                border: 1px solid rgba(255, 255, 255, 0.05);
+                background: rgba(17, 24, 39, 0.75) !important;
+                backdrop-filter: blur(16px) saturate(180%);
+                -webkit-backdrop-filter: blur(16px) saturate(180%);
+                border: 1px solid #1E293B !important;
                 border-radius: 16px;
-                padding: 0.75rem 1.25rem;
-                margin-bottom: 1.5rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+                padding: 1rem 1.5rem;
+                margin-bottom: 2.5rem;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
             }
             
-            /* Compact Cards & Details */
+            /* Premium Modern SaaS Cards */
             .premium-card {
-                background-color: #131A2B !important;
-                border: 1px solid rgba(124, 92, 255, 0.1) !important;
+                background: rgba(26, 35, 50, 0.6) !important;
+                backdrop-filter: blur(8px);
+                border: 1px solid #1E293B !important;
                 border-radius: 16px !important;
-                padding: 1rem !important;
-                margin-bottom: 1rem !important;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+                padding: 1.5rem !important;
+                margin-bottom: 1.5rem !important;
+                box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5) !important;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
             }
 
             .premium-card:hover {
-                border-color: rgba(124, 92, 255, 0.3) !important;
+                transform: translateY(-2px);
+                border-color: #7C3AED !important;
+                box-shadow: 0 12px 35px -8px rgba(124, 58, 237, 0.15) !important;
             }
             
+            /* Muted Text Classes */
             .muted-text {
                 color: #94A3B8 !important;
-                font-size: 0.85rem;
+                font-size: 0.9rem;
             }
 
-            /* Priority Pills */
+            .submuted-text {
+                color: #64748B !important;
+                font-size: 0.8rem;
+            }
+            
+            /* Custom headers & gradient text */
+            .saas-title {
+                background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 700;
+                margin: 0;
+                letter-spacing: -0.025em;
+            }
+            
+            /* Custom Chat Timeline styling */
+            [data-testid="stChatMessage"] {
+                background-color: #111827 !important;
+                border: 1px solid #1E293B !important;
+                border-radius: 16px !important;
+                padding: 1.2rem 1.5rem !important;
+                margin-bottom: 1rem !important;
+                box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.3) !important;
+            }
+            
+            /* Target Streamlit Buttons to look premium and aligned */
+            div.stButton > button {
+                background-color: #1A2332 !important;
+                color: #F8FAFC !important;
+                border: 1px solid #1E293B !important;
+                border-radius: 12px !important;
+                padding: 0.6rem 1.2rem !important;
+                height: 48px !important;
+                font-weight: 500 !important;
+                font-size: 0.95rem !important;
+                width: 100% !important;
+                transition: all 0.2s ease-in-out !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+
+            div.stButton > button:hover {
+                border-color: #7C3AED !important;
+                color: #FFFFFF !important;
+                background-color: #1E293B !important;
+                transform: translateY(-1px);
+            }
+
+            /* Primary Button overrides */
+            div.stButton > button[kind="primary"] {
+                background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%) !important;
+                color: #FFFFFF !important;
+                border: none !important;
+                font-weight: 600 !important;
+            }
+
+            div.stButton > button[kind="primary"]:hover {
+                background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%) !important;
+                box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3) !important;
+            }
+            
+            /* Fixed Chat Input Bar at Bottom (Notion/ChatGPT style) */
+            [data-testid="stChatInput"] {
+                background-color: #111827 !important;
+                border: 1px solid #1E293B !important;
+                border-radius: 16px !important;
+                padding: 0.5rem !important;
+                box-shadow: 0 -10px 30px -10px rgba(0,0,0,0.5) !important;
+            }
+            
+            [data-testid="stChatInput"] textarea {
+                background-color: transparent !important;
+                color: #F8FAFC !important;
+                border: none !important;
+                padding: 0.6rem 1rem !important;
+                font-size: 0.95rem !important;
+            }
+
+            [data-testid="stChatInput"] button {
+                background-color: #7C3AED !important;
+                border-radius: 10px !important;
+                color: #FFFFFF !important;
+            }
+
+            [data-testid="stChatInput"] button:hover {
+                background-color: #8B5CF6 !important;
+            }
+
+            /* Badges & Alerts contrast colors */
             .p-badge-high {
                 background-color: rgba(239, 68, 68, 0.15);
                 color: #EF4444;
-                padding: 2px 8px;
+                padding: 4px 10px;
                 border-radius: 8px;
                 font-size: 0.75rem;
                 font-weight: 600;
@@ -81,7 +174,7 @@ def inject_custom_css():
             .p-badge-medium {
                 background-color: rgba(245, 158, 11, 0.15);
                 color: #F59E0B;
-                padding: 2px 8px;
+                padding: 4px 10px;
                 border-radius: 8px;
                 font-size: 0.75rem;
                 font-weight: 600;
@@ -91,45 +184,18 @@ def inject_custom_css():
             .p-badge-low {
                 background-color: rgba(34, 197, 94, 0.15);
                 color: #22C55E;
-                padding: 2px 8px;
+                padding: 4px 10px;
                 border-radius: 8px;
                 font-size: 0.75rem;
                 font-weight: 600;
                 display: inline-block;
             }
 
-            /* Custom headers */
-            .saas-title {
-                background: linear-gradient(135deg, #7C5CFF 0%, #B885FF 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                font-weight: 700;
-                margin: 0;
-            }
-            
-            /* Custom Chat Bubbles */
-            [data-testid="stChatMessage"] {
-                background-color: #131A2B !important;
-                border: 1px solid rgba(255, 255, 255, 0.05) !important;
-                border-radius: 16px !important;
-                padding: 0.8rem 1.2rem !important;
-                margin-bottom: 0.75rem !important;
-            }
-            
-            /* Customize Chat Inputs */
-            [data-testid="stChatInput"] textarea {
-                background-color: #131A2B !important;
-                color: #FFFFFF !important;
-                border: 1px solid rgba(124, 92, 255, 0.2) !important;
-                border-radius: 12px !important;
-            }
-            
-            /* Suggestion Chips */
-            .chip-container {
-                display: flex;
-                gap: 8px;
-                flex-wrap: wrap;
-                margin-bottom: 1.5rem;
+            /* Dialogs glass overrides */
+            div[data-testid="stDialog"] {
+                background-color: #111827 !important;
+                border: 1px solid #1E293B !important;
+                border-radius: 20px !important;
             }
         </style>
     """, unsafe_allow_html=True)

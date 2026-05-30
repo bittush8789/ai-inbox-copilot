@@ -133,17 +133,17 @@ except Exception:
     connected = False
 
 st.markdown("<div class='glass-header'>", unsafe_allow_html=True)
-col_nav_logo, col_nav_status, col_nav_btn = st.columns([1.5, 2, 1.2])
+col_nav_logo, col_nav_status, col_nav_btn = st.columns([2, 1.5, 1.5])
 
 with col_nav_logo:
-    st.markdown("<h3 style='margin:0;'><span class='saas-title'>🤖 AI Inbox Copilot</span></h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='margin:0; line-height: 48px;'><span class='saas-title'>🤖 AI Inbox Copilot</span></h3>", unsafe_allow_html=True)
 
 with col_nav_status:
     if connected:
         email_addr = get_connected_email() or "Gmail account"
-        st.markdown(f"<div style='text-align: right; font-size:0.85rem; color:#22C55E; font-weight:600;'>🟢 Connected: {email_addr}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: right; line-height: 48px; font-size:0.9rem; color:#22C55E; font-weight:600;'>🟢 Connected: {email_addr}</div>", unsafe_allow_html=True)
     else:
-        st.markdown("<div style='text-align: right; font-size:0.85rem; color:#EF4444; font-weight:600;'>🔴 Gmail Disconnected</div>", unsafe_allow_html=True)
+        st.markdown("<div style='text-align: right; line-height: 48px; font-size:0.9rem; color:#EF4444; font-weight:600;'>🔴 Gmail Disconnected</div>", unsafe_allow_html=True)
 
 with col_nav_btn:
     col_sub_sync, col_sub_disc = st.columns([1, 1])
@@ -188,34 +188,34 @@ with col_nav_btn:
 st.markdown("</div>", unsafe_allow_html=True)
 
 # ================= HERO HEADER SECTION =================
-st.markdown("<h2 style='text-align: center; margin-top: 2rem;'>Your AI Assistant for Email</h2>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color:#94A3B8; font-size:1.1rem; margin-bottom: 2.5rem;'>Connect Gmail and instantly understand your inbox.</p>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; margin-top: 1.5rem; font-weight: 700; color: #F8FAFC;'>Your AI Assistant for Email</h2>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color:#94A3B8; font-size:1.1rem; margin-bottom: 2.5rem;'>Securely connect Gmail, auto-extract tasks/meetings, and reply with custom AI models.</p>", unsafe_allow_html=True)
 
 # ================= QUICK ACTION CHIPS =================
-st.markdown("""<div class="chip-container" style="justify-content: center; margin-bottom: 2rem;">""", unsafe_allow_html=True)
+st.markdown("""<div class="chip-container" style="justify-content: center; margin-bottom: 2.5rem;">""", unsafe_allow_html=True)
 col_c1, col_c2, col_c3, col_c4, col_c5, col_c6 = st.columns(6)
 with col_c1:
-    if st.button("Summarize Inbox", key="c_sum", use_container_width=True):
+    if st.button("📝 Summarize Inbox", key="c_sum", use_container_width=True):
         st.session_state.pending_query = "Summarize today's inbox"
         st.rerun()
 with col_c2:
-    if st.button("Urgent Emails", key="c_urg", use_container_width=True):
+    if st.button("🚨 Urgent Emails", key="c_urg", use_container_width=True):
         st.session_state.pending_query = "Show urgent emails"
         st.rerun()
 with col_c3:
-    if st.button("Tasks List", key="c_tsk", use_container_width=True):
+    if st.button("📋 Tasks List", key="c_tsk", use_container_width=True):
         st.session_state.pending_query = "Show pending tasks"
         st.rerun()
 with col_c4:
-    if st.button("Draft Reply", key="c_rep", use_container_width=True):
+    if st.button("✍️ Draft Reply", key="c_rep", use_container_width=True):
         st.session_state.pending_query = "Draft a response to recruiter emails"
         st.rerun()
 with col_c5:
-    if st.button("Meetings", key="c_mtg", use_container_width=True):
+    if st.button("📅 Meetings", key="c_mtg", use_container_width=True):
         st.session_state.pending_query = "Show calendar meetings"
         st.rerun()
 with col_c6:
-    if st.button("Invoices", key="c_inv", use_container_width=True):
+    if st.button("🧾 Invoices", key="c_inv", use_container_width=True):
         st.session_state.pending_query = "Show all bill and invoice emails"
         st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
@@ -231,8 +231,13 @@ if pending_drafts:
     st.session_state.copilot_state["pending_action"] = "SEND_EMAIL"
     st.session_state.copilot_state["approval_status"] = "WAITING_APPROVAL"
     
-    st.info("📩 You have an email reply draft pending review.")
-    if st.button("✏️ Open Draft Reviewer", type="primary", use_container_width=True):
+    st.markdown(f"""
+        <div class="premium-card">
+            <h4 style="margin: 0 0 0.5rem 0; color: #F8FAFC; font-weight: 600;">📩 Draft Message Pending Review</h4>
+            <p class="muted-text" style="margin: 0;">You have an AI-composed response ready for <strong>{active_draft.to_email}</strong>. Please review, edit, or dispatch the message.</p>
+        </div>
+    """, unsafe_allow_html=True)
+    if st.button("Review Drafts", type="primary", use_container_width=True):
         show_draft_dialog(active_draft)
 else:
     if st.session_state.copilot_state["approval_status"] == "WAITING_APPROVAL":
