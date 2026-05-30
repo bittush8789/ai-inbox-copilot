@@ -1,0 +1,25 @@
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env
+
+# Database and Vector Store
+*.db
+emails.db
+chroma_db/
+logs/
+
+# Google OAuth Credentials
+credentials.json
+token.json
+token.pickle
+
+# IDE and System Files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
