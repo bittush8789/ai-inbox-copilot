@@ -20,6 +20,12 @@ def inject_custom_css():
                 background-color: transparent !important;
             }
 
+            /* Global Typography Color Fix for Markdown, Chat, Paragraphs, Lists */
+            .stMarkdown, .stMarkdown p, .stMarkdown li, .stMarkdown span, .stMarkdown div,
+            p, li, span, h1, h2, h3, h4, h5, h6 {
+                color: #F8FAFC !important;
+            }
+
             /* Container Spacing & Layout */
             .main .block-container {
                 max-width: 1100px !important;
@@ -68,14 +74,12 @@ def inject_custom_css():
             }
             
             /* Muted Text Classes */
-            .muted-text {
+            .muted-text, .premium-card .muted-text, .glass-header .muted-text {
                 color: #94A3B8 !important;
-                font-size: 0.9rem;
             }
 
-            .submuted-text {
+            .submuted-text, .premium-card .submuted-text {
                 color: #64748B !important;
-                font-size: 0.8rem;
             }
             
             /* Custom headers & gradient text */
@@ -96,6 +100,10 @@ def inject_custom_css():
                 padding: 1.2rem 1.5rem !important;
                 margin-bottom: 1rem !important;
                 box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.3) !important;
+            }
+
+            [data-testid="stChatMessage"] *, [data-testid="stChatMessage"] p, [data-testid="stChatMessage"] li {
+                color: #F8FAFC !important;
             }
             
             /* Target Streamlit Buttons to look premium and aligned */
@@ -163,7 +171,7 @@ def inject_custom_css():
             /* Badges & Alerts contrast colors */
             .p-badge-high {
                 background-color: rgba(239, 68, 68, 0.15);
-                color: #EF4444;
+                color: #EF4444 !important;
                 padding: 4px 10px;
                 border-radius: 8px;
                 font-size: 0.75rem;
@@ -173,7 +181,7 @@ def inject_custom_css():
 
             .p-badge-medium {
                 background-color: rgba(245, 158, 11, 0.15);
-                color: #F59E0B;
+                color: #F59E0B !important;
                 padding: 4px 10px;
                 border-radius: 8px;
                 font-size: 0.75rem;
@@ -183,7 +191,7 @@ def inject_custom_css():
 
             .p-badge-low {
                 background-color: rgba(34, 197, 94, 0.15);
-                color: #22C55E;
+                color: #22C55E !important;
                 padding: 4px 10px;
                 border-radius: 8px;
                 font-size: 0.75rem;
