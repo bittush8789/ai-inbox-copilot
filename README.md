@@ -63,6 +63,8 @@ project-root/
 ├── .env                        # Local environment variables
 ├── .gitignore                  # Git ignore definitions
 ├── credentials.json            # Google OAuth Client configuration (git-ignored)
+├── Dockerfile                  # Docker container configuration
+├── docker-compose.yml          # Docker Compose multi-container orchestrator
 ├── emails.db                   # SQLite database file (git-ignored)
 ├── main.py                     # Entrypoint script
 └── requirements.txt            # Python dependencies
@@ -87,17 +89,19 @@ The local SQLite schema stores the relational states:
 ## 🚀 Installation & Setup
 
 ### Prerequisites
-- Python 3.10+
+- Python 3.10+ (for local run) or Docker / Docker Compose
 - Google Cloud Console Project with the **Gmail API** enabled.
 - A **Groq Cloud API Key**.
 
-### Step 1: Clone and Prepare
+### Local Setup
+
+#### Step 1: Clone and Prepare
 ```bash
 git clone https://github.com/bittush8789/ai-inbox-copilot.git
 cd ai-inbox-copilot
 ```
 
-### Step 2: Virtual Environment & Packages
+#### Step 2: Virtual Environment & Packages
 ```bash
 python -m venv venv
 # Windows:
@@ -108,18 +112,33 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Step 3: Secrets Setup
+#### Step 3: Secrets Setup
 1. Create a `.env` file in the root directory:
    ```env
    GROQ_API_KEY=your_groq_api_key_here
    ```
 2. Place your downloaded desktop app client credentials as `credentials.json` in the root folder.
 
-### Step 4: Run Application
+#### Step 4: Run Application
 ```bash
 streamlit run main.py
 ```
 Open `http://localhost:8501`, log in using the **Link** button, and synchronize your inbox.
+
+### Docker Setup
+
+Alternatively, you can run the application inside a Docker container.
+
+1. Ensure `.env` (with `GROQ_API_KEY`) and `credentials.json` are present in the project root directory.
+2. Build and start the container:
+   ```bash
+   docker-compose up --build -d
+   ```
+3. Open `http://localhost:8501` to access the application dashboard.
+4. Stop the container using:
+   ```bash
+   docker-compose down
+   ```
 
 ---
 
